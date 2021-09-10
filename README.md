@@ -24,4 +24,44 @@ Application can be reached from the localhost:
 
 **Run tests:**
 
-Run `php ./vendor/bin/phpunit`
+## Notes about the API endpoints
+
+This application is using two custom API endpoints
+
+**POST: https://api.supermetrics.com/assignment/register**
+
+This endpoint registers a token for use against the second endpoint
+
+PARAMS:
+```
+client_id: ju16a6m81mhid5ue1z3v2g0uh
+email: your@email.address
+name: Your Name
+```
+
+RETURNS:
+```
+sl_token: This token string should be used in the subsequent query. Please note that this token will only last 1 hour from when the REGISTER call happens. You will need to register and fetch a new token as you need it.
+client_id: returned for informational purposes only
+email: returned for informational purposes only
+```
+
+
+
+**GET: https://api.supermetrics.com/assignment/posts**
+
+This endpoint fetches posts along a number of pages using the registered token.
+
+PARAMS:
+```
+sl_token: Token from the register call
+page: integer page number of posts (1-10)
+```
+
+RETURNS:
+```
+page: What page was requested or retrieved
+posts: 100 posts per page
+```
+
+
