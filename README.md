@@ -24,6 +24,8 @@ Application can be reached from the localhost:
 
 **Run tests:**
 
+Run `php ./vendor/bin/phpunit`
+
 ## Notes about the API endpoints
 
 This application is using two custom API endpoints
