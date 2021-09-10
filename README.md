@@ -1,8 +1,10 @@
 # super-assignment
 
+This application connects to a fictional social media network. One endpoint registers a token and the other endpoint fetches posts made by fictional users across a 6 month period.
+
 ## Dependencies
 
-You should be running PHP 7.4 and available to use command line on your machine for any commands listed below. How you run PHP is up to you!
+You should be running PHP 8.0+, the latest version of composer and available to use command line on your machine for any commands listed below. How you run PHP is up to you!
 
 * `guzzlehttp/guzzle` - to make API calls
 * `symfony/cache` - not to disturb the API much

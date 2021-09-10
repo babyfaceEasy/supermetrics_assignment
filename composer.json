@@ -1,10 +1,10 @@
 {
-    "name": "krupjanski/super-assignment",
+    "name": "supermetrics/php-assignment",
     "type": "project",
     "authors": [
         {
-            "name": "Dmitrii Krupianskii",
-            "email": "dkrupyanskiy@gmail.com"
+            "name": "Supermetrics Developers",
+            "email": "careers@supermetrics.com"
         }
     ],
     "minimum-stability": "stable",
