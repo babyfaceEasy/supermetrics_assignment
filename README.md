@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-You should be running PHP 7.4 and available touse command line
+You should be running PHP 7.4 and available to use command line on your machine for any commands listed below. How you run PHP is up to you!
 
 * `guzzlehttp/guzzle` - to make API calls
 * `symfony/cache` - not to disturb the API much
