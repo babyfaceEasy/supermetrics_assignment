@@ -2,6 +2,8 @@
 
 ## Dependencies
 
+You should be running PHP 7.4 and available touse command line
+
 * `guzzlehttp/guzzle` - to make API calls
 * `symfony/cache` - not to disturb the API much
 * `vlucas/phpdotenv` - to keep some config data out of files
