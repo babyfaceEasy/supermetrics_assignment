@@ -1,0 +1,14 @@
+{
+    "meta": {
+        "response_end": {
+            "microtime": 1.53400269E9,
+            "time": "2018-08-11T15:50:44+00:00"
+        },
+        "response_time": 0
+    },
+    "data": {
+        "client_id": "ju16a6m81mhid5ue1z3v2g0uh",
+        "email": "your@email.address",
+        "sl_token": "smslt_6db89021475_4fe4a2a98c8a83"
+    }
+}

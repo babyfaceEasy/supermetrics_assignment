@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Fictional social platform</h2>
+        <p class="lead">posts statistics</p>
+    </div>
+
+    <form>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <select class="custom-select d-block w-100" id="month" required="">
+                    <?php foreach ($options as $option): ?>
+
+                        <option> <?= $option ?></option>
+
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <input class="btn btn-primary btn-block" id="retrieve-stats" value="Show statistics" type="button">
+            </div>
+        </div>
+    </form>
+    <div class="invisible" id="statistics">
+        <h4>Statistics:</h4>
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody id="stats-table">
+            </tbody>
+        </table>
+    </div>
+</div>

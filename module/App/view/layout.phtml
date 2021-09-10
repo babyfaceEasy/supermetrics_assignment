@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body class="bg-light">
+<?php include $content ?>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#retrieve-stats').click(function () {
+            $.get('/statistics?month=' + $('#month').val(),
+                function (data, status) {
+                    $('#statistics').addClass('visible').removeClass('invisible');
+                    $('#stats-table').empty();
+                    onStatsSuccess(data.stats);
+                }
+            );
+        })
+    });
+
+    function onStatsSuccess(stats) {
+        appendRow(stats);
+    }
+
+    function appendRow(stats) {
+        if (stats.value !== null && stats.splitPeriod === null) {
+            $('#stats-table').append(
+                '<tr><td>' + stats.label + '</td>' +
+                '<td>' + stats.value + ' ' + stats.units + '</td></tr>'
+            );
+        }
+
+        if (stats.value !== null && stats.splitPeriod !== null) {
+            $('#stats-table').append(
+                '<tr><td class="text-right">' + stats.splitPeriod + '</td>' +
+                '<td>' + stats.value + ' ' + stats.units + '</td></tr>'
+            );
+        }
+
+        if (stats.value === null && stats.label !== null) {
+            $('#stats-table').append(
+                '<tr><td colspan="2">' + stats.label + '</td></tr>'
+            );
+        }
+
+
+        if (!(stats.children && stats.children.length)) {
+            return;
+        }
+
+        stats.children.forEach(
+            function (item) {
+                appendRow(item, false);
+            }
+        );
+    }
+</script>
+</body>
+</html>
