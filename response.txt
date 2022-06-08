@@ -8,7 +8,8 @@ He / she should also make use of a HTTPClient to interact with the API (supermet
 The HTTPClient should be passed into the decorator using Dependency Injection (preferrably constructor injection).
 I would also advice the author of the code to make use of interface injection, this would make the client testable and interchangeable.
 
-3. I would refactor the code by making use of classes. 
+Answer to Question 3: 
+I would refactor the code by making use of classes. 
 I would have a Request Class and a method called getMasterEmail().
 This method would encapsulate all the details and checks needed to get email from $_REQUEST.
 The global variable $_REQUEST would be passed into the Request Class using dependency injection (preferably constructor injection).
@@ -22,7 +23,8 @@ Prepared statements has 2 main adavantages:
 a. Queries run faster.
 b. It also protect the system from SQL inject attacks.
 
-4. I don't have a straight answer for this. 
+Answer to Question 4: 
+I don't have a straight answer for this. 
 It would depend on pros and cons of using that class/library from the external framework / package in my project.
 I would have to check how long it would take me / team to implement the class / library.
 What would be the cost of maintianing the class / library, if we implemented it ourselves.
