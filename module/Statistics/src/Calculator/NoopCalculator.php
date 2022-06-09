@@ -9,19 +9,62 @@ use Statistics\Dto\StatisticsTo;
 
 class NoopCalculator extends AbstractCalculator
 {
+    public const UNITS = 'posts';
+
     /**
-     * @inheritDoc
+     * @var array
      */
-    protected function doAccumulate(SocialPostTo $postTo): void
+    private $userDailyPostCount = [];
+
+    /**
+     * @return array
+     */
+    public function userDailyPostCount(): array
     {
-        // Noops!
+        return $this->userDailyPostCount;
     }
 
     /**
      * @inheritDoc
      */
-    protected function doCalculate(): StatisticsTo
+    public function doAccumulate(SocialPostTo $postTo): void
     {
-        return new StatisticsTo();
+        // Noops!
+        $userKey = $postTo->getAuthorName();
+        if (!isset($this->userDailyPostCount[$userKey])) {
+            $this->userDailyPostCount[$userKey] = [];
+        }
+
+        $dailyKey = $postTo->getDate()->format('j');
+        $this->userDailyPostCount[$userKey][$dailyKey] = ($this->userDailyPostCount[$userKey][$dailyKey] ?? 0) + 1;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function doCalculate(): StatisticsTo
+    {
+        $stats =  new StatisticsTo();
+        foreach ($this->userDailyPostCount as $userKey => $dailyPostCount) {
+            $child = (new StatisticsTo())
+                ->setName($this->parameters->getStatName())
+                ->setSplitPeriod($userKey)
+                ->setValue($this->getAverage($dailyPostCount))
+                ->setUnits(SELF::UNITS);
+
+                $stats->addChild($child);
+        }
+
+        return $stats;
+    }
+
+    /**
+     * @return float
+     */
+    private function getAverage(array $dailyPostCount): int
+    {
+        if (!$dailyPostCount) return 0;
+
+        return (int) (array_sum($dailyPostCount) / count($dailyPostCount));
     }
 }
