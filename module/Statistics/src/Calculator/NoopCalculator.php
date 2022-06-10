@@ -11,14 +11,8 @@ class NoopCalculator extends AbstractCalculator
 {
     public const UNITS = 'posts';
 
-    /**
-     * @var array
-     */
-    private $userDailyPostCount = [];
+    private array $userDailyPostCount = [];
 
-    /**
-     * @return array
-     */
     public function userDailyPostCount(): array
     {
         return $this->userDailyPostCount;
@@ -58,9 +52,6 @@ class NoopCalculator extends AbstractCalculator
         return $stats;
     }
 
-    /**
-     * @return float
-     */
     private function getAverage(array $dailyPostCount): int
     {
         if (!$dailyPostCount) return 0;
