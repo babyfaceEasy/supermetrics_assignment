@@ -9,7 +9,7 @@ use Statistics\Dto\StatisticsTo;
 
 class NoopCalculator extends AbstractCalculator
 {
-    public const UNITS = 'posts';
+    protected const UNITS = 'posts';
 
     private array $userDailyPostCount = [];
 

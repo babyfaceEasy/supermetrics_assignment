@@ -8,6 +8,18 @@ He / she should also make use of a HTTPClient to interact with the API (supermet
 The HTTPClient should be passed into the decorator using Dependency Injection (preferrably constructor injection).
 I would also advice the author of the code to make use of interface injection, this would make the client testable and interchangeable.
 
+[Update]:
+I would reject the code because:
+a. It would alaways return an error since the enpoint needs to be accessed using a POST Method.
+b. The code is not reusable, extensible and resilient. It would at least cause PHP warning.
+c. The code is not testable.
+I would advice the author of the code to use Gateway Pattern to implement the code (the interaction with supermetrics API).
+I would aslo advice he/she to make use of Mapper / Data Mapper pattern to convert / map the raw data coming from supermetrics API into an object / entity inside the app.
+I would also advice that both the HTTPClient and the Data Mapper object should be passed as dependencies to SupermetricsGateway. 
+Also that he / she should make use of interface injection for the dependencies. This makes switching concerete implementations easy and possibel with fewer code changes. It also makes testing possible. 
+
+You can find a sample of my code implementation on a file named: 'solution_two.php'
+
 Answer to Question 3: 
 I would refactor the code by making use of classes. 
 I would have a Request Class and a method called getMasterEmail().
@@ -22,6 +34,8 @@ I would also make use of PDO to interact with the database. This brings in OOP i
 Prepared statements has 2 main adavantages:
 a. Queries run faster.
 b. It also protect the system from SQL inject attacks.
+
+You can find a sample of my code implementation on a file named: 'solution_three.php'
 
 Answer to Question 4: 
 I don't have a straight answer for this. 
